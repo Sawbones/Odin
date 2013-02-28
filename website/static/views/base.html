@@ -2,7 +2,11 @@
 <% include header.html %>
 <body>
 <div class="container">
-		<% include index.html %>	
+	<% if(body === 'index') { %>
+		<% include index.html %>
+	<% } if(body === 'register'){ %>
+		<% include register.html %>
+	<% } %>
 </div>
 </body>
 </html>

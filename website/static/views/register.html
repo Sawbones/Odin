@@ -1,0 +1,74 @@
+<style type="text/css">
+input[type=text]
+{
+	height:30px;
+	width:500px;
+	max-width:90%;	
+}
+input[type=submit]
+{
+	width:500px;
+	max-width:90%;
+}
+img[src='/img/registerplaceholder.jpg']
+{
+	border:1px solid #333;
+	box-shadow: 0px 0px 10px #333;
+}
+</style>
+<div class="row">
+	<div class="span12">
+		<div class="page-header text-info"><h1>Quickly, Register!<small>So you can play my game</small></h1></div>
+	</div>
+</div>
+<div class="row">
+	<div class="span6">
+		<% for(var i = 0; i < errors.length; i+=1){%>
+			<p class="text-error"><%= errors[i] %></p>
+		<% } %>
+		<form class="register" method="post" action="/register">
+			<label for="email">Email:</label>
+			<input type="text" name="email" placeholder="E-mail" />
+
+			<hr />
+
+			<label for="password">Password:</label>
+			<input type="text" name="password" placeholder="Password" />
+
+			<label for="repassword">Repassword:</label>
+			<input type="text" name="repassword" placeholder="ReEnter Password" />
+
+			<hr />
+
+			<input type="submit" value="Register" class="btn btn-primary btn-large btn-block" />
+		</form>
+	</div>
+
+	<div class="span6 pull-right">
+		<div class="thumbnail">
+			<img src="/img/registerplaceholder.jpg"/>
+			<div class="caption">
+				<h3>"Little Bobby Tables"</h3>
+				<p>
+					A strong adventurer for his age Mr. Tables 
+					set off out of his home before he was even 5 to join the militia.
+					After killing 100 red coats he was promoted to captain and now serves
+					the United Federation.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="span6 pull-left">
+		<div class="media">
+			<a href="#" class="pull-left">
+				<img class="media-object" src="/img/stone_sword.png" />
+			</a>
+
+			<div class="media-body">
+				<h2 class="media-heading">Already Signed up?<small>GOOD!</small></h2>
+				<p>Start playing <a href="/game">now.</a></p>
+			</div>
+		</div>
+	</div>
+</div>
