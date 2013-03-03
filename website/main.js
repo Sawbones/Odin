@@ -16,7 +16,7 @@ app.use(express.bodyParser());
 server.listen(8080);
 
 io.sockets.on('connection', function(socket){
-	socket.on('login', events.login);
+	
 });
 
 /*
@@ -25,6 +25,7 @@ io.sockets.on('connection', function(socket){
 * Here is where you need to declare what paths are mapped to what templates
 * ---------------------------------------
 */
-app.get('/', routes.register);
-app.post('/', routes.register);
+app.post('/login', routes.login);
+app.get('/register', routes.register);
+app.post('/register', routes.register);
 app.get('/game', routes.index);

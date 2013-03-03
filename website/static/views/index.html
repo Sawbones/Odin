@@ -1,7 +1,30 @@
 <style type="text/css">
+body
+{
+	background-color:#333;
+	color:#F0F0F0;
+}
 h3, h6
 {
 	display:inline;
+}
+#form
+{
+	text-align:center;
+	margin-top:20px;
+}
+#form label
+{
+	text-align:left;
+}
+#form input[type=text], #form input[type=password]
+{
+	width:100%;
+	height:30px;
+}
+#game
+{
+	border:4px solid #111;
 }
 </style>
 <div class="row">
@@ -15,9 +38,79 @@ h3, h6
 		<p>Do you need to make an account? <a href="/register">Go here.</a></p>
 	</div>
 </div>
+
+<div class="row" id="logindiv" style="display:none">
+	<div class="span4 offset4">
+		You will have to sign in if you want to play...
+		<p id="error" class="text-error"></p>
+		<form id="form" style="text-align:center">
+			<label for="email">E-mail</label>
+			<input type="text" name="email" />
+			<label for="password">Password</label>
+			<input type="password" name="password" />
+			<input type="button" class="btn btn-success btn-large btn-block" value="Login" />
+		</form>
+	</div>
+</div>
 </div>
 <center>
-	<canvas width="1280" height="720" id="game" style="display:none"></canvas>
+	<canvas width="1280" height="720" id="game"></canvas>
 </center>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-<script type="text/javascript" src="/js/game.js"></script>
+<script type="text/javascript" src="/js/Game/Objects/Menus/character_selection.js"></script>
+<script type="text/javascript" src="/js/Game/menu.js"></script>
+<script type="text/javascript" src="/js/Game/game.js"></script>
+
+<script type="text/javascript">
+$(window).load(function(){
+	var time = new Date().getTime();
+	var oldTime = time;
+	var game = new Game();
+	game.init();
+	game.update();
+	game.draw();
+	/*
+	setInterval(function(){
+		var delta = time - oldTime;
+		game.update(delta);
+		game.draw(delta);
+		oldTime = time;
+	}, 16);
+	*/
+
+	/*
+	$('input[type=button]').click(function(e){
+		e.preventDefault();
+		function success(data)
+		{
+			if(data.error == "")
+			{
+				$("#logindiv").remove();
+				$("#game").show();
+				var game = new Game();
+				game.init();
+			}
+			else
+			{
+				$("#error").text(data.error);
+			}
+
+		}
+
+		function error(data)
+		{
+			console.log("Error: " + data.error)
+		}
+
+		$.ajax
+		({
+			url : '/login',
+			type : 'POST',
+			dataType : 'json',
+			data : $("#form").serialize(),
+			success : success,
+			error : error
+		});
+	});*/
+});
+</script>
